@@ -40,7 +40,7 @@ async function requestProf(id) {
 
 // fim de chamadas pra api
 
-//interação com o DOM
+//interação com o DOM com o HTML
 async function listarAlunas() {
   const dados = await request()
 
