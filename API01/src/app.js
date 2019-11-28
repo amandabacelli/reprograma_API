@@ -6,6 +6,10 @@ const index = require('./routes/index')
 const alunas = require('./routes/alunasRoute')
 const professoras = require('./routes/professorasRoute')
 
+//para usar o post precosa instanciar o json
+
+app.use(express.json())
+
 // app.all("*",function(req, res, next){ //app.all mostra quantas vezes a api foi requisitada dentre outras coisas.
 //     //next faz o código ir para a proxima função
 //     next()

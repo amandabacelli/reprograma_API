@@ -1,4 +1,5 @@
 const professoras = require('../model/professoras.json')
+const fs = require('fs')
 
 //RETORNA TODAS AS PROPRIEDADES DA LISTA
 // exports.get = (req,res) => {
@@ -71,3 +72,21 @@ exports.getIdProfa = (req, res) => {
 //     delete prof.cpf
 //     res.status(200).send(prof)
 // }
+
+exports.post = (req,res) => {
+    const { id, nome, especialidade, signo, cpf } = req.body
+    professoras.push({ id, nome, especialidade, signo, cpf })
+
+    //colocar o caminho absoluto do arquivo JSON
+    //transformar o JSON em string (JSON.stringify) para conseguir manipular os dados
+    //utf8 - formato que eu quero gravar
+
+    fs.writeFile("./src/model/professoras.json", JSON.stringify(professoras), 'utf8', function(err) {
+        if(err){
+            return res.status(500).send({ message: err}) //indica que caso tenho um erro, a aplicação nao irá parar
+        }
+        console.log("arquivo gravado")
+
+    })
+    return res.status(201).send(professoras)
+}
